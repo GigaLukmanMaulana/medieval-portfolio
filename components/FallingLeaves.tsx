@@ -2,6 +2,97 @@
 
 import { useEffect, useRef } from 'react';
 
+interface Leaf {
+  x: number;
+  y: number;
+  size: number;
+  speedY: number;
+  speedX: number;
+  rotation: number;
+  rotationSpeed: number;
+  opacity: number;
+  color: string;
+  phase: number;
+  amplitude: number;
+}
+
+const COLORS = [
+  '#4a7c59', '#5a9e6f', '#3d6b4a', '#6ab187',
+  '#2d5a3d', '#7bc47f', '#4e8b5f', '#38724a',
+];
+
+function randomRange(min: number, max: number): number {
+  return Math.random() * (max - min) + min;
+}
+
+function randomColor(): string {
+  return COLORS[Math.floor(Math.random() * COLORS.length)];
+}
+
+function createLeaf(width: number, height: number, initial: boolean): Leaf {
+  return {
+    x: initial ? randomRange(-50, width) : randomRange(-50, width * 0.3),
+    y: initial ? randomRange(-200, height) : randomRange(-200, -20),
+    size: randomRange(12, 26),
+    speedY: randomRange(0.3, 0.8),
+    speedX: randomRange(0.1, 0.4),
+    rotation: randomRange(0, Math.PI * 2),
+    rotationSpeed: randomRange(-0.02, 0.02),
+    opacity: randomRange(0.5, 0.9),
+    color: randomColor(),
+    phase: randomRange(0, Math.PI * 2),
+    amplitude: randomRange(1.5, 3.5),
+  };
+}
+
+function updateLeaf(leaf: Leaf, width: number, height: number, time: number): void {
+  leaf.y += leaf.speedY;
+  leaf.x += leaf.speedX + Math.sin(time * 0.5 + leaf.phase) * leaf.amplitude * 0.08;
+  leaf.rotation += leaf.rotationSpeed;
+
+  if (leaf.y > height + 30 || leaf.x > width + 30) {
+    const newLeaf = createLeaf(width, height, false);
+    leaf.x = newLeaf.x;
+    leaf.y = newLeaf.y;
+    leaf.size = newLeaf.size;
+    leaf.speedY = newLeaf.speedY;
+    leaf.speedX = newLeaf.speedX;
+    leaf.rotation = newLeaf.rotation;
+    leaf.rotationSpeed = newLeaf.rotationSpeed;
+    leaf.opacity = newLeaf.opacity;
+    leaf.color = newLeaf.color;
+    leaf.phase = newLeaf.phase;
+    leaf.amplitude = newLeaf.amplitude;
+  }
+}
+
+function drawLeaf(ctx: CanvasRenderingContext2D, leaf: Leaf): void {
+  ctx.save();
+  ctx.translate(leaf.x, leaf.y);
+  ctx.rotate(leaf.rotation);
+  ctx.scale(leaf.size / 20, leaf.size / 20);
+
+  // Leaf body
+  ctx.beginPath();
+  ctx.moveTo(0, -10);
+  ctx.bezierCurveTo(8, -8, 10, 0, 0, 10);
+  ctx.bezierCurveTo(-10, 0, -8, -8, 0, -10);
+  ctx.closePath();
+  ctx.fillStyle = leaf.color;
+  ctx.globalAlpha = leaf.opacity;
+  ctx.fill();
+
+  // Center vein
+  ctx.beginPath();
+  ctx.moveTo(0, -9);
+  ctx.lineTo(0, 9);
+  ctx.strokeStyle = 'rgba(0,0,0,0.15)';
+  ctx.lineWidth = 0.5;
+  ctx.stroke();
+
+  ctx.restore();
+}
+
 export default function FallingLeaves() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -11,89 +102,58 @@ export default function FallingLeaves() {
 
     const canvas = canvasRef.current;
     if (!canvas) return;
-
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    let animationFrameId: number;
-    const leaves: any[] = [];
-    
-    const colors = ['#c0392b', '#e67e22', '#d4ac0d', '#a04000', '#8b1a1a'];
-
-    const resize = () => {
+    const setSize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
-    window.addEventListener('resize', resize);
-    resize();
+    setSize();
+    window.addEventListener('resize', setSize);
 
-    const maxLeaves = window.innerWidth > 768 ? 12 : 7;
+    const isMobile = window.innerWidth < 768;
+    const maxLeaves = isMobile ? 8 : 18;
+    const leaves: Leaf[] = Array.from({ length: maxLeaves }, () =>
+      createLeaf(canvas.width, canvas.height, true)
+    );
 
-    const createLeaf = () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height - canvas.height,
-      size: Math.random() * 12 + 12,
-      rotation: Math.random() * Math.PI * 2,
-      rotationSpeed: (Math.random() - 0.5) * 0.04,
-      speedY: Math.random() * 0.5 + 0.4,
-      phase: Math.random() * Math.PI * 2,
-      color: colors[Math.floor(Math.random() * colors.length)],
-      opacity: Math.random() * 0.35 + 0.5
-    });
-
-    for (let i = 0; i < maxLeaves; i++) {
-      leaves.push(createLeaf());
-    }
-
-    const drawLeaf = (leaf: any) => {
-      ctx.save();
-      ctx.translate(leaf.x, leaf.y);
-      ctx.rotate(leaf.rotation);
-      ctx.globalAlpha = leaf.opacity;
-      ctx.fillStyle = leaf.color;
-
-      ctx.beginPath();
-      // Simple organic leaf shape
-      ctx.moveTo(0, -leaf.size / 2);
-      ctx.bezierCurveTo(leaf.size / 2, -leaf.size / 4, leaf.size / 2, leaf.size / 4, 0, leaf.size / 2);
-      ctx.bezierCurveTo(-leaf.size / 2, leaf.size / 4, -leaf.size / 2, -leaf.size / 4, 0, -leaf.size / 2);
-      ctx.fill();
-      ctx.restore();
-    };
-
+    let animId: number;
     let time = 0;
+
     const animate = () => {
-      time += 0.01;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      time += 0.016;
 
-      leaves.forEach(leaf => {
-        leaf.y += leaf.speedY;
-        leaf.x += Math.sin(time + leaf.phase) * 1.5;
-        leaf.rotation += leaf.rotationSpeed;
-
-        if (leaf.y > canvas.height + 30) {
-          leaf.y = -30;
-          leaf.x = Math.random() * canvas.width;
-        }
-
-        drawLeaf(leaf);
+      leaves.forEach((leaf) => {
+        updateLeaf(leaf, canvas.width, canvas.height, time);
+        drawLeaf(ctx, leaf);
       });
 
-      animationFrameId = requestAnimationFrame(animate);
+      animId = requestAnimationFrame(animate);
     };
 
     animate();
 
     return () => {
-      window.removeEventListener('resize', resize);
-      cancelAnimationFrame(animationFrameId);
+      cancelAnimationFrame(animId);
+      window.removeEventListener('resize', setSize);
     };
   }, []);
 
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-0"
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        pointerEvents: 'none',
+        zIndex: 9999,
+        display: 'block',
+      }}
     />
   );
 }
