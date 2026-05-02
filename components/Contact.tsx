@@ -22,7 +22,7 @@ export default function Contact() {
     <section id="kontak" className="py-24 px-4">
       <div className="max-w-lg mx-auto text-center">
         <div className="text-gold text-2xl mb-4">⚜</div>
-        <h2 className="font-cinzel-deco text-4xl text-ink dark:text-parchment mb-12">Kirim Pesan</h2>
+        <h2 className="font-cinzel-deco text-4xl text-leather dark:text-parchment mb-12">Kirim Pesan</h2>
 
         <motion.div 
           className="flex justify-center gap-6 mb-12"
@@ -49,7 +49,7 @@ export default function Contact() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="bg-crimson text-parchment font-cinzel px-8 py-4 border border-gold hover:bg-crimson-light animate-float tracking-widest text-lg shadow-lg"
+          className="bg-crimson text-parchment font-cinzel px-8 py-4 border border-gold hover:bg-crimson-light animate-float tracking-widest text-lg shadow-lg rounded"
         >
           Kirim Surat ✉
         </motion.button>

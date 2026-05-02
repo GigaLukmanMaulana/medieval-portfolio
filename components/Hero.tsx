@@ -54,7 +54,7 @@ export default function Hero() {
         </div>
         
         <motion.h1 
-          className="font-cinzel-deco text-5xl md:text-7xl text-ink dark:text-parchment mb-6 drop-shadow-sm flex flex-wrap justify-center"
+          className="font-cinzel-deco text-5xl md:text-7xl lg:text-8xl text-leather dark:text-parchment font-bold tracking-wider text-center mb-6 drop-shadow-sm flex flex-wrap justify-center"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -66,7 +66,7 @@ export default function Hero() {
           ))}
         </motion.h1>
 
-        <div className="font-garamond text-xl md:text-2xl text-stone dark:text-parchment/60 italic mb-12 h-8">
+        <div className="font-cinzel text-xl md:text-2xl text-leather/80 dark:text-parchment/80 italic mb-12 h-8">
           <span ref={typedRef}></span>
         </div>
 
@@ -74,14 +74,13 @@ export default function Hero() {
           <a 
             href="#proyek" 
             onClick={(e) => handleScrollTo(e, '#proyek')}
-            className="bg-crimson border border-gold text-parchment font-cinzel px-8 py-3 tracking-widest hover:bg-crimson-light transition-all animate-shimmer"
-            style={{ backgroundImage: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)', backgroundSize: '200% 100%' }}
+            className="bg-crimson text-parchment border-2 border-gold hover:bg-crimson-light font-cinzel px-8 py-3 rounded transition-all"
           >
             Lihat Proyek
           </a>
           <a 
             href="#" 
-            className="bg-transparent border border-ink dark:border-parchment text-ink dark:text-parchment font-cinzel px-8 py-3 tracking-widest hover:bg-ink hover:text-parchment dark:hover:bg-parchment dark:hover:text-obsidian transition-all"
+            className="bg-transparent text-leather dark:text-parchment border-2 border-leather dark:border-parchment hover:bg-leather hover:text-parchment dark:hover:bg-parchment dark:hover:text-obsidian font-cinzel px-8 py-3 rounded transition-all"
           >
             Unduh CV
           </a>

@@ -12,7 +12,7 @@ export default function Testimonials() {
   return (
     <section id="testimoni" className="py-24 px-4 max-w-7xl mx-auto overflow-hidden">
       <div className="text-center mb-16">
-        <h2 className="font-cinzel-deco text-4xl text-ink dark:text-parchment">Surat Pujian</h2>
+        <h2 className="font-cinzel-deco text-4xl text-leather dark:text-parchment">Surat Pujian</h2>
         <div className="text-gold mt-4 text-2xl">❧</div>
       </div>
 
@@ -28,7 +28,7 @@ export default function Testimonials() {
           >
             <div>
               <div className="font-cinzel text-gold text-5xl leading-none mb-2">❝</div>
-              <p className="font-garamond italic text-stone dark:text-parchment/60 text-lg mb-6 leading-relaxed">
+              <p className="font-garamond italic text-leather/80 dark:text-parchment/80 text-lg mb-6 leading-relaxed">
                 "{testi.quote}"
               </p>
             </div>
@@ -36,11 +36,11 @@ export default function Testimonials() {
             <div>
               <div className="w-full h-px bg-gold/30 mb-4"></div>
               <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-gold/30 flex items-center justify-center font-cinzel text-ink dark:text-parchment font-bold border border-gold/50">
+                <div className="w-10 h-10 rounded-full bg-gold/30 flex items-center justify-center font-cinzel text-leather dark:text-parchment font-bold border border-gold/50">
                   {testi.name.charAt(0)}
                 </div>
                 <div>
-                  <div className="font-cinzel text-ink dark:text-parchment">{testi.name}</div>
+                  <div className="font-cinzel text-leather dark:text-parchment">{testi.name}</div>
                   <div className="font-garamond text-sm text-stone dark:text-parchment/60">{testi.role}</div>
                 </div>
               </div>

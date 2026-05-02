@@ -33,12 +33,12 @@
 }
 
 body {
-  background-color: var(--color-parchment);
+  background-color: #f4e4bc;
   background-image: 
     radial-gradient(circle at center, transparent 40%, rgba(139, 26, 26, 0.05) 100%),
     radial-gradient(circle at corners, rgba(44, 24, 16, 0.2) 0%, transparent 50%),
     url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
-  color: var(--color-ink);
+  color: #2c1810;
 }
 
 .dark body {
@@ -65,14 +65,14 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-parchment);
+  background: #f4e4bc;
 }
 .dark ::-webkit-scrollbar-track {
-  background: var(--color-obsidian);
+  background: #0f0a06;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-gold);
+  background: #c9a227;
   border-radius: 4px;
 }
 
@@ -82,11 +82,11 @@ html {
   float: left;
   line-height: 1;
   margin-right: 8px;
-  color: var(--color-crimson);
+  color: #8b1a1a;
 }
 
 .ornament-divider {
   text-align: center;
-  color: var(--color-gold);
+  color: #c9a227;
   letter-spacing: 0.1em;
 }

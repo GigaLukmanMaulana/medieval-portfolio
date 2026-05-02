@@ -10,15 +10,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        parchment: { DEFAULT: '#f4e4bc', dark: '#e8d4a0' },
-        leather: { DEFAULT: '#2c1810' },
-        gold: { DEFAULT: '#c9a227', light: '#e8c547', dark: '#9a7a1c' },
-        crimson: { DEFAULT: '#8b1a1a', light: '#b02222' },
-        ink: { DEFAULT: '#1a0f0a' },
-        stone: { DEFAULT: '#6b6560' },
-        forest: { DEFAULT: '#2d5016' },
-        obsidian: { DEFAULT: '#0f0a06' },
-        ember: { DEFAULT: '#1c1008' },
+        parchment: '#f4e4bc',
+        'parchment-dark': '#e8d4a0',
+        leather: '#2c1810',
+        gold: '#c9a227',
+        'gold-light': '#e8c547',
+        'gold-dark': '#9a7a1c',
+        crimson: '#8b1a1a',
+        'crimson-light': '#b02222',
+        ink: '#1a0f0a',
+        stone: '#6b6560',
+        forest: '#2d5016',
+        obsidian: '#0f0a06',
+        ember: '#1c1008',
       },
       fontFamily: {
         cinzel: ['var(--font-cinzel)', 'serif'],

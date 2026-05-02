@@ -34,7 +34,7 @@ export default function Skills() {
   return (
     <section id="keahlian" className="py-24 px-4 max-w-7xl mx-auto">
       <div className="text-center mb-16">
-        <h2 className="font-cinzel-deco text-4xl text-ink dark:text-parchment">Perkumpulan Keahlian</h2>
+        <h2 className="font-cinzel-deco text-4xl text-leather dark:text-parchment">Perkumpulan Keahlian</h2>
         <div className="text-gold mt-4 text-2xl">❧</div>
       </div>
 
@@ -57,7 +57,7 @@ export default function Skills() {
               {guild.skills.map((skill, sIdx) => (
                 <span 
                   key={sIdx}
-                  className="bg-leather/10 dark:bg-parchment/10 border border-gold/30 text-ink dark:text-parchment font-garamond px-4 py-1.5 rounded-full text-sm hover:bg-gold hover:text-leather dark:hover:bg-gold dark:hover:text-obsidian transition-all cursor-default"
+                  className="bg-parchment-dark dark:bg-parchment/10 border border-gold/40 text-leather dark:text-parchment font-garamond px-4 py-1.5 rounded-full text-sm hover:bg-gold hover:text-leather dark:hover:bg-gold dark:hover:text-obsidian transition-all cursor-default"
                 >
                   {skill}
                 </span>

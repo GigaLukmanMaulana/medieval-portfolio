@@ -12,7 +12,7 @@ export default function Timeline() {
   return (
     <section id="perjalanan" className="py-24 px-4 max-w-5xl mx-auto">
       <div className="text-center mb-16">
-        <h2 className="font-cinzel-deco text-4xl text-ink dark:text-parchment">Kronik Perjalanan</h2>
+        <h2 className="font-cinzel-deco text-4xl text-leather dark:text-parchment">Kronik Perjalanan</h2>
         <div className="text-gold mt-4 text-2xl">❧</div>
       </div>
 
@@ -46,7 +46,7 @@ export default function Timeline() {
                 <div className="w-full md:w-5/12 pl-16 md:pl-0">
                   <div className={`bg-parchment-dark dark:bg-ember border border-gold/40 dark:border-gold/30 rounded-lg p-6 shadow-md ${isLeft ? 'md:text-right' : 'md:text-left'}`}>
                     <h3 className="font-cinzel text-crimson text-xl mb-2">{event.role}</h3>
-                    <div className="font-garamond text-stone dark:text-parchment/60 text-lg italic">{event.org}</div>
+                    <div className="font-garamond text-leather/80 dark:text-parchment/80 text-lg italic">{event.org}</div>
                   </div>
                 </div>
               </motion.div>

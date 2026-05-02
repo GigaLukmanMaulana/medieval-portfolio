@@ -12,7 +12,7 @@ export default function Projects() {
   return (
     <section id="proyek" className="py-24 px-4 max-w-7xl mx-auto">
       <div className="text-center mb-16">
-        <h2 className="font-cinzel-deco text-4xl text-ink dark:text-parchment">Gulungan Misi</h2>
+        <h2 className="font-cinzel-deco text-4xl text-leather dark:text-parchment">Gulungan Misi</h2>
         <div className="text-gold mt-4 text-2xl">❧</div>
       </div>
 
@@ -40,22 +40,22 @@ export default function Projects() {
 
               {/* Card Body */}
               <div className="p-6 flex-grow flex flex-col">
-                <h3 className="font-cinzel text-ink dark:text-parchment text-xl mb-3">{proj.title}</h3>
+                <h3 className="font-cinzel text-leather dark:text-parchment text-xl mb-3">{proj.title}</h3>
                 <p className="font-garamond text-stone dark:text-parchment/60 mb-6 line-clamp-2 flex-grow">{proj.desc}</p>
                 
                 <div className="flex flex-wrap gap-2 mb-8">
                   {proj.techs.map((tech, tIdx) => (
-                    <span key={tIdx} className="bg-forest/10 dark:bg-parchment/10 text-forest dark:text-parchment border border-forest/30 dark:border-parchment/30 px-3 py-1 rounded-full text-xs font-garamond">
+                    <span key={tIdx} className="bg-forest text-parchment dark:bg-parchment/10 dark:text-parchment border border-forest/30 dark:border-parchment/30 text-xs px-2 py-1 rounded font-garamond">
                       {tech}
                     </span>
                   ))}
                 </div>
 
                 <div className="flex gap-4 mt-auto">
-                  <button className="flex-1 border border-crimson text-crimson font-cinzel py-2 text-sm hover:bg-crimson hover:text-parchment transition-colors">
+                  <button className="flex-1 border border-crimson text-crimson font-cinzel py-2 text-sm hover:bg-crimson hover:text-parchment transition-colors rounded">
                     Demo ↗
                   </button>
-                  <button className="flex-1 border border-crimson text-crimson font-cinzel py-2 text-sm hover:bg-crimson hover:text-parchment transition-colors">
+                  <button className="flex-1 border border-crimson text-crimson font-cinzel py-2 text-sm hover:bg-crimson hover:text-parchment transition-colors rounded">
                     GitHub ↗
                   </button>
                 </div>

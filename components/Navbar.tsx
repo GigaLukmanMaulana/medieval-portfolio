@@ -34,7 +34,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-leather/90 dark:bg-obsidian/95 backdrop-blur-md text-parchment dark:text-parchment shadow-lg border-b border-gold/20' : 'bg-transparent text-ink dark:text-parchment'}`}>
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-leather/90 dark:bg-obsidian/95 backdrop-blur-md shadow-lg border-b border-gold/20' : 'bg-transparent'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <div className="flex items-center">
@@ -49,7 +49,7 @@ export default function Navbar() {
                 key={link.name} 
                 href={link.href} 
                 onClick={(e) => handleScrollTo(e, link.href)}
-                className={`font-cinzel text-sm uppercase tracking-wider transition-colors ${scrolled ? 'text-parchment hover:text-gold dark:text-parchment/80 dark:hover:text-gold' : 'text-ink hover:text-crimson dark:text-parchment/80 dark:hover:text-gold'}`}
+                className={`font-cinzel text-sm uppercase tracking-wider transition-colors ${scrolled ? 'text-parchment hover:text-gold dark:text-parchment/80 dark:hover:text-gold' : 'text-leather hover:text-crimson dark:text-parchment/80 dark:hover:text-gold'}`}
               >
                 {link.name}
               </a>
