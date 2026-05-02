@@ -151,7 +151,7 @@ export default function FallingLeaves() {
         width: '100vw',
         height: '100vh',
         pointerEvents: 'none',
-        zIndex: 9999,
+        zIndex: 1,
         display: 'block',
       }}
     />
