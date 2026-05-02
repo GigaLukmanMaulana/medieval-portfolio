@@ -49,7 +49,7 @@ export default function Navbar() {
                 key={link.name} 
                 href={link.href} 
                 onClick={(e) => handleScrollTo(e, link.href)}
-                className={`font-cinzel text-sm uppercase tracking-wider transition-colors ${scrolled ? 'text-parchment hover:text-gold dark:text-parchment/80 dark:hover:text-gold' : 'text-leather hover:text-crimson dark:text-parchment/80 dark:hover:text-gold'}`}
+                className={`font-cinzel text-sm uppercase tracking-wider transition-colors ${scrolled ? 'text-parchment hover:text-gold' : 'text-leather dark:text-parchment/80 hover:text-crimson dark:hover:text-gold'}`}
               >
                 {link.name}
               </a>
@@ -75,7 +75,7 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleScrollTo(e, link.href)}
-                className="block font-cinzel text-parchment dark:text-parchment/80 text-lg uppercase tracking-wider hover:text-gold dark:hover:text-gold transition-colors"
+                className="block font-cinzel text-parchment text-lg uppercase tracking-wider hover:text-gold transition-colors"
               >
                 {link.name}
               </a>

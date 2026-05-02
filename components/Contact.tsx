@@ -30,16 +30,16 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <a href="#" className="w-12 h-12 rounded-full border border-gold/40 flex items-center justify-center text-stone dark:text-parchment/60 hover:text-gold dark:hover:text-gold hover:border-gold dark:hover:border-gold hover:scale-110 transition-all">
+          <a href="#" className="w-12 h-12 rounded-full border border-gold/40 flex items-center justify-center text-stone dark:text-parchment/60 hover:text-gold hover:border-gold hover:scale-110 transition-all">
             <Github size={20} />
           </a>
-          <a href="#" className="w-12 h-12 rounded-full border border-gold/40 flex items-center justify-center text-stone dark:text-parchment/60 hover:text-gold dark:hover:text-gold hover:border-gold dark:hover:border-gold hover:scale-110 transition-all">
+          <a href="#" className="w-12 h-12 rounded-full border border-gold/40 flex items-center justify-center text-stone dark:text-parchment/60 hover:text-gold hover:border-gold hover:scale-110 transition-all">
             <Linkedin size={20} />
           </a>
-          <a href="#" className="w-12 h-12 rounded-full border border-gold/40 flex items-center justify-center text-stone dark:text-parchment/60 hover:text-gold dark:hover:text-gold hover:border-gold dark:hover:border-gold hover:scale-110 transition-all">
+          <a href="#" className="w-12 h-12 rounded-full border border-gold/40 flex items-center justify-center text-stone dark:text-parchment/60 hover:text-gold hover:border-gold hover:scale-110 transition-all">
             <MessageCircle size={20} />
           </a>
-          <a href="#" className="w-12 h-12 rounded-full border border-gold/40 flex items-center justify-center text-stone dark:text-parchment/60 hover:text-gold dark:hover:text-gold hover:border-gold dark:hover:border-gold hover:scale-110 transition-all">
+          <a href="#" className="w-12 h-12 rounded-full border border-gold/40 flex items-center justify-center text-stone dark:text-parchment/60 hover:text-gold hover:border-gold hover:scale-110 transition-all">
             <Mail size={20} />
           </a>
         </motion.div>

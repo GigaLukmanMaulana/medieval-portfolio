@@ -1,6 +1,10 @@
 @import "tailwindcss";
 
-@theme {
+/* Enable class-based dark mode for Tailwind v4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Theme tokens - colors, fonts, animations */
+@theme inline {
   --color-parchment: #f4e4bc;
   --color-parchment-dark: #e8d4a0;
   --color-leather: #2c1810;
@@ -21,26 +25,30 @@
 
   --animate-shimmer: shimmer 3s infinite linear;
   --animate-float: float 3s ease-in-out infinite;
-
-  @keyframes shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
-  }
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
 }
 
+/* Keyframes MUST be outside @theme — nesting them broke the entire theme block */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Light mode body */
 body {
   background-color: #f4e4bc;
-  background-image: 
+  background-image:
     radial-gradient(circle at center, transparent 40%, rgba(139, 26, 26, 0.05) 100%),
     radial-gradient(circle at corners, rgba(44, 24, 16, 0.2) 0%, transparent 50%),
     url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
   color: #2c1810;
 }
 
+/* Dark mode body */
 .dark body {
   background-color: #0f0a06;
   background-image:
@@ -50,6 +58,7 @@ body {
   color: #e8d4a0;
 }
 
+/* Smooth color transitions */
 *, *::before, *::after {
   transition-property: background-color, border-color, color;
   transition-duration: 300ms;

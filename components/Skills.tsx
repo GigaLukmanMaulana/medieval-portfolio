@@ -46,7 +46,7 @@ export default function Skills() {
         viewport={{ once: true }}
       >
         {guilds.map((guild, idx) => (
-          <motion.div key={idx} variants={itemVariants} className="bg-parchment-dark dark:bg-ember border border-gold/40 dark:border-gold/30 rounded-lg p-6 shadow-md relative overflow-hidden group hover:border-gold dark:hover:border-gold transition-colors">
+          <motion.div key={idx} variants={itemVariants} className="bg-parchment-dark dark:bg-ember border border-gold/40 dark:border-gold/30 rounded-lg p-6 shadow-md relative overflow-hidden group hover:border-gold transition-colors">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold to-transparent opacity-50"></div>
             
             <h3 className="font-cinzel text-crimson text-xl mb-6 text-center border-b border-gold/20 pb-4">
@@ -57,7 +57,7 @@ export default function Skills() {
               {guild.skills.map((skill, sIdx) => (
                 <span 
                   key={sIdx}
-                  className="bg-parchment-dark dark:bg-parchment/10 border border-gold/40 text-leather dark:text-parchment font-garamond px-4 py-1.5 rounded-full text-sm hover:bg-gold hover:text-leather dark:hover:bg-gold dark:hover:text-obsidian transition-all cursor-default"
+                  className="bg-parchment-dark dark:bg-parchment/10 border border-gold/40 text-leather dark:text-parchment font-garamond px-4 py-1.5 rounded-full text-sm hover:bg-gold hover:text-leather transition-all cursor-default"
                 >
                   {skill}
                 </span>
