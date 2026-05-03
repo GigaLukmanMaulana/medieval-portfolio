@@ -58,11 +58,17 @@ body {
   color: #e8d4a0;
 }
 
-/* Smooth color transitions */
-*, *::before, *::after {
+/* Smooth color transitions — canvas dikecualikan agar tidak konflik dengan rAF */
+*:not(canvas), *:not(canvas)::before, *:not(canvas)::after {
   transition-property: background-color, border-color, color;
   transition-duration: 300ms;
   transition-timing-function: ease-in-out;
+}
+
+/* Pastikan canvas bebas dari semua CSS override */
+canvas {
+  transition: none !important;
+  animation: none !important;
 }
 
 html {

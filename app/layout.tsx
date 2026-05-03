@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Cinzel_Decorative, Cinzel, EB_Garamond } from "next/font/google";
 import "./globals.css";
-import FallingLeaves from "@/components/FallingLeaves";
 import { Providers } from "@/components/Providers";
+import FallingLeavesWrapper from "@/components/FallingLeavesWrapper";
 
 const cinzelDeco = Cinzel_Decorative({
   weight: ["400", "700", "900"],
@@ -34,7 +34,7 @@ export default function RootLayout({
     <html lang="id" className={`${cinzelDeco.variable} ${cinzel.variable} ${garamond.variable}`} suppressHydrationWarning>
       <body className="antialiased font-garamond overflow-x-hidden relative min-h-screen bg-parchment dark:bg-obsidian transition-colors duration-500">
         <Providers>
-          <FallingLeaves />
+          <FallingLeavesWrapper />
           {children}
         </Providers>
       </body>

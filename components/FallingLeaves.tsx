@@ -31,14 +31,14 @@ function randomColor(): string {
 
 function createLeaf(width: number, height: number, initial: boolean): Leaf {
   return {
-    x: initial ? randomRange(-50, width) : randomRange(-50, width * 0.3),
+    x: initial ? randomRange(0, width) : randomRange(-50, width * 0.3),
     y: initial ? randomRange(-200, height) : randomRange(-200, -20),
     size: randomRange(12, 26),
-    speedY: randomRange(0.3, 0.8),
-    speedX: randomRange(0.1, 0.4),
+    speedY: randomRange(0.4, 1.0),
+    speedX: randomRange(0.1, 0.5),
     rotation: randomRange(0, Math.PI * 2),
-    rotationSpeed: randomRange(-0.02, 0.02),
-    opacity: randomRange(0.5, 0.9),
+    rotationSpeed: randomRange(-0.025, 0.025),
+    opacity: randomRange(0.55, 0.92),
     color: randomColor(),
     phase: randomRange(0, Math.PI * 2),
     amplitude: randomRange(1.5, 3.5),
@@ -50,44 +50,34 @@ function updateLeaf(leaf: Leaf, width: number, height: number, time: number): vo
   leaf.x += leaf.speedX + Math.sin(time * 0.5 + leaf.phase) * leaf.amplitude * 0.08;
   leaf.rotation += leaf.rotationSpeed;
 
-  if (leaf.y > height + 30 || leaf.x > width + 30) {
-    const newLeaf = createLeaf(width, height, false);
-    leaf.x = newLeaf.x;
-    leaf.y = newLeaf.y;
-    leaf.size = newLeaf.size;
-    leaf.speedY = newLeaf.speedY;
-    leaf.speedX = newLeaf.speedX;
-    leaf.rotation = newLeaf.rotation;
-    leaf.rotationSpeed = newLeaf.rotationSpeed;
-    leaf.opacity = newLeaf.opacity;
-    leaf.color = newLeaf.color;
-    leaf.phase = newLeaf.phase;
-    leaf.amplitude = newLeaf.amplitude;
+  if (leaf.y > height + 40 || leaf.x > width + 40) {
+    const next = createLeaf(width, height, false);
+    Object.assign(leaf, next);
   }
 }
 
 function drawLeaf(ctx: CanvasRenderingContext2D, leaf: Leaf): void {
   ctx.save();
+  ctx.globalAlpha = leaf.opacity;
   ctx.translate(leaf.x, leaf.y);
   ctx.rotate(leaf.rotation);
   ctx.scale(leaf.size / 20, leaf.size / 20);
 
-  // Leaf body
+  // Body daun
   ctx.beginPath();
   ctx.moveTo(0, -10);
   ctx.bezierCurveTo(8, -8, 10, 0, 0, 10);
   ctx.bezierCurveTo(-10, 0, -8, -8, 0, -10);
   ctx.closePath();
   ctx.fillStyle = leaf.color;
-  ctx.globalAlpha = leaf.opacity;
   ctx.fill();
 
-  // Center vein
+  // Tulang tengah
   ctx.beginPath();
   ctx.moveTo(0, -9);
   ctx.lineTo(0, 9);
-  ctx.strokeStyle = 'rgba(0,0,0,0.15)';
-  ctx.lineWidth = 0.5;
+  ctx.strokeStyle = 'rgba(0,0,0,0.18)';
+  ctx.lineWidth = 0.6;
   ctx.stroke();
 
   ctx.restore();
@@ -97,45 +87,55 @@ export default function FallingLeaves() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
     const canvas = canvasRef.current;
     if (!canvas) return;
+
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    // Set ukuran canvas ke pixel nyata (bukan CSS size)
     const setSize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      canvas.width = w;
+      canvas.height = h;
+      // Pastikan style juga sinkron
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
     };
     setSize();
     window.addEventListener('resize', setSize);
 
     const isMobile = window.innerWidth < 768;
-    const maxLeaves = isMobile ? 8 : 18;
+    const maxLeaves = isMobile ? 10 : 22;
+
     const leaves: Leaf[] = Array.from({ length: maxLeaves }, () =>
       createLeaf(canvas.width, canvas.height, true)
     );
 
     let animId: number;
     let time = 0;
+    let running = true;
 
     const animate = () => {
+      if (!running) return;
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       time += 0.016;
 
-      leaves.forEach((leaf) => {
+      for (const leaf of leaves) {
         updateLeaf(leaf, canvas.width, canvas.height, time);
         drawLeaf(ctx, leaf);
-      });
+      }
 
       animId = requestAnimationFrame(animate);
     };
 
-    animate();
+    // Mulai setelah satu frame agar DOM sudah stabil
+    animId = requestAnimationFrame(animate);
 
     return () => {
+      running = false;
       cancelAnimationFrame(animId);
       window.removeEventListener('resize', setSize);
     };
@@ -144,15 +144,19 @@ export default function FallingLeaves() {
   return (
     <canvas
       ref={canvasRef}
+      aria-hidden="true"
       style={{
         position: 'fixed',
         top: 0,
         left: 0,
-        width: '100vw',
-        height: '100vh',
         pointerEvents: 'none',
-        zIndex: 1,
+        zIndex: 9,           // di atas konten biasa, di bawah modal/nav
         display: 'block',
+        // Isolasi dari CSS transition global di globals.css
+        transition: 'none',
+        animation: 'none',
+        // Hint GPU untuk performa canvas
+        willChange: 'contents',
       }}
     />
   );
