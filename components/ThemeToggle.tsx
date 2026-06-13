@@ -9,6 +9,7 @@ export default function ThemeToggle() {
   const { theme, setTheme } = useTheme()
   const [showTooltip, setShowTooltip] = useState(false)
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => setMounted(true), [])
   if (!mounted) return <div className="w-9 h-9" /> // placeholder
 
@@ -18,33 +19,33 @@ export default function ThemeToggle() {
         onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
-        className={`flex items-center justify-center w-9 h-9 rounded-full transition-all duration-300 ${
+        className={`relative flex items-center justify-center w-9 h-9 rounded-full overflow-hidden transition-all duration-300 ${
           theme === 'dark'
             ? 'bg-parchment/10 border border-parchment/30 text-parchment/80 hover:bg-parchment/20 hover:scale-110'
             : 'bg-gold/20 border border-gold/40 text-gold hover:bg-gold/40 hover:scale-110'
         }`}
         aria-label="Toggle dark mode"
       >
-        <AnimatePresence mode="wait">
+        <AnimatePresence initial={false}>
           {theme === 'dark' ? (
             <motion.span
               key="moon"
-              initial={{ rotate: -90, scale: 0 }}
-              animate={{ rotate: 0, scale: 1 }}
-              exit={{ rotate: 90, scale: 0 }}
-              transition={{ duration: 0.3 }}
-              className="text-lg"
+              initial={{ y: -30, opacity: 0, rotate: -45 }}
+              animate={{ y: 0, opacity: 1, rotate: 0 }}
+              exit={{ y: 30, opacity: 0, rotate: 45 }}
+              transition={{ duration: 0.5, type: 'spring', stiffness: 150, damping: 15 }}
+              className="absolute text-lg"
             >
               🌙
             </motion.span>
           ) : (
             <motion.span
               key="sun"
-              initial={{ rotate: 90, scale: 0 }}
-              animate={{ rotate: 0, scale: 1 }}
-              exit={{ rotate: -90, scale: 0 }}
-              transition={{ duration: 0.3 }}
-              className="text-lg"
+              initial={{ y: -30, opacity: 0, rotate: 45 }}
+              animate={{ y: 0, opacity: 1, rotate: 0 }}
+              exit={{ y: 30, opacity: 0, rotate: -45 }}
+              transition={{ duration: 0.5, type: 'spring', stiffness: 150, damping: 15 }}
+              className="absolute text-lg"
             >
               ☀️
             </motion.span>

@@ -4,7 +4,6 @@ import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import Timeline from "@/components/Timeline";
-import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import Divider from "@/components/Divider";
@@ -22,8 +21,6 @@ export default function Home() {
       <Projects />
       <Divider />
       <Timeline />
-      <Divider />
-      <Testimonials />
       <Divider />
       <Contact />
       <Footer />

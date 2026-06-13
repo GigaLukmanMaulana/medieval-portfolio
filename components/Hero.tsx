@@ -23,7 +23,7 @@ export default function Hero() {
     };
   }, []);
 
-  const name = "SANG PENGEMBARA";
+  const name = "Giga Lukman Maulana";
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -52,17 +52,22 @@ export default function Hero() {
         <div className="text-gold opacity-60 text-2xl mb-6 tracking-widest">
           ✦ ⚜ ✦
         </div>
-        
-        <motion.h1 
+
+        <motion.h1
           className="font-cinzel-deco text-5xl md:text-7xl lg:text-8xl text-leather dark:text-parchment font-bold tracking-wider text-center mb-6 drop-shadow-sm flex flex-wrap justify-center"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {name.split('').map((char, index) => (
-            <motion.span key={index} variants={letterVariants}>
-              {char === ' ' ? '\u00A0' : char}
-            </motion.span>
+          {name.split(' ').map((word, wIndex) => (
+            <span key={wIndex} className="inline-block whitespace-nowrap">
+              {word.split('').map((char, cIndex) => (
+                <motion.span key={cIndex} variants={letterVariants} className="inline-block">
+                  {char}
+                </motion.span>
+              ))}
+              {wIndex < name.split(' ').length - 1 && <span className="inline-block">&nbsp;</span>}
+            </span>
           ))}
         </motion.h1>
 
@@ -71,18 +76,20 @@ export default function Hero() {
         </div>
 
         <div className="flex flex-col sm:flex-row gap-6 mt-4">
-          <a 
-            href="#proyek" 
+          <a
+            href="#proyek"
             onClick={(e) => handleScrollTo(e, '#proyek')}
             className="bg-crimson text-parchment border-2 border-gold hover:bg-crimson-light font-cinzel px-8 py-3 rounded transition-all"
           >
             Lihat Proyek
           </a>
-          <a 
-            href="#" 
+          <a
+            href="/cv.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-transparent text-leather dark:text-parchment border-2 border-leather dark:border-parchment hover:bg-leather hover:text-parchment dark:hover:bg-parchment dark:hover:text-obsidian font-cinzel px-8 py-3 rounded transition-all"
           >
-            Unduh CV
+            CV
           </a>
         </div>
       </div>

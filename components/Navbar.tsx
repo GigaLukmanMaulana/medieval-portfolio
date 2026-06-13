@@ -28,7 +28,12 @@ export default function Navbar() {
     e.preventDefault();
     const target = document.querySelector(href);
     if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
+      const navbarHeight = 80; // tinggi h-20 = 80px
+      const targetPosition = target.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: targetPosition - navbarHeight - 24, // offset posisi persis di atas border
+        behavior: 'smooth'
+      });
       setIsOpen(false);
     }
   };
@@ -39,7 +44,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-20">
           <div className="flex items-center">
             <span className="font-cinzel text-gold text-2xl font-bold tracking-widest">
-              ⚜ CHRONICLES
+              ⚜ BOUNTY
             </span>
           </div>
           
@@ -49,7 +54,7 @@ export default function Navbar() {
                 key={link.name} 
                 href={link.href} 
                 onClick={(e) => handleScrollTo(e, link.href)}
-                className={`font-cinzel text-sm uppercase tracking-wider transition-colors ${scrolled ? 'text-parchment hover:text-gold' : 'text-leather dark:text-parchment/80 hover:text-crimson dark:hover:text-gold'}`}
+                className={`nav-scroll-item font-cinzel text-sm uppercase tracking-wider ${scrolled ? 'text-parchment' : 'text-leather dark:text-parchment/80'}`}
               >
                 {link.name}
               </a>

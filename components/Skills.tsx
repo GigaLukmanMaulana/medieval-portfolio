@@ -6,15 +6,15 @@ export default function Skills() {
   const guilds = [
     {
       title: "Serikat Front-End",
-      skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "HTML", "CSS"]
+      skills: ["React", "Flutter", "TypeScript", "Tailwind CSS", "HTML", "CSS"]
     },
     {
       title: "Serikat Back-End",
-      skills: ["Node.js", "Express", "Python", "PostgreSQL", "MongoDB"]
+      skills: ["Node.js", "Python", "Firebase", "MySQL"]
     },
     {
       title: "Serikat Perkakas",
-      skills: ["Git", "GitHub", "Figma", "VS Code", "Docker", "Linux"]
+      skills: ["Git", "GitHub", "Figma", "VS Code"]
     }
   ];
 
@@ -32,7 +32,8 @@ export default function Skills() {
   };
 
   return (
-    <section id="keahlian" className="py-24 px-4 max-w-7xl mx-auto">
+    <section id="keahlian" className="py-8 px-4">
+      <div className="max-w-7xl mx-auto manuscript-frame">
       <div className="text-center mb-16">
         <h2 className="font-cinzel-deco text-4xl text-leather dark:text-parchment">Perkumpulan Keahlian</h2>
         <div className="text-gold mt-4 text-2xl">❧</div>
@@ -66,6 +67,7 @@ export default function Skills() {
           </motion.div>
         ))}
       </motion.div>
+      </div>
     </section>
   );
 }

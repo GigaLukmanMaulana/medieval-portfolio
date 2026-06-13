@@ -7,7 +7,7 @@ export default function Footer() {
       
       <div className="mt-6">
         <p className="font-garamond italic text-parchment/60 mb-2">
-          © 2025 Portfolio. Hak cipta dilindungi.
+          © 2026 Giga Lukman Maulana. Hak cipta dilindungi.
         </p>
         <p className="font-cinzel text-gold/60 text-sm tracking-widest mt-1 uppercase">
           Ars longa, vita brevis
